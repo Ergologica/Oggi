@@ -133,16 +133,17 @@
         console.log("Emozioni selezionate:", Array.from(selectedEmotions));
       }
           function saveResponses() {
-        const responses = Array.from(selectedEmotions);
-        fetch('http://localhost:3000/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ responses }),
-        })
-          .then((response) => response.text())
-          .then((data) => console.log(data))
-          .catch((error) => console.error('Errore:', error));
-      }
+  const responses = Array.from(selectedEmotions);
+  fetch('https://tuo-progetto.onrender.com/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ responses }),
+  })
+    .then((response) => response.text())
+    .then((data) => console.log(data))
+    .catch((error) => console.error('Errore:', error));
+}
+
 
       document.querySelector('button').addEventListener('click', saveResponses);
     </script>
