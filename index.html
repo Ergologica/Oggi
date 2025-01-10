@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Il Viaggio di Oggi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      h1 {
+        color: #4CAF50;
+      }
+      .choices-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+      .choice {
+        margin: 10px;
+        padding: 10px;
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .choice:hover {
+        transform: scale(1.1);
+      }
+      .choice img {
+        width: 150px;
+        height: 150px;
+        border-radius: 8px;
+      }
+      .choice label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Il Viaggio di Oggi</h1>
+    <p>Scegli come affrontare la tua giornata!</p>
+
+    <div class="choices-container" id="emotionChoices">
+      <div class="choice" onclick="selectChoice('emotion', 'Felicità')">
+        <img src="https://via.placeholder.com/150?text=Felicità" alt="Felicità">
+        <label>Felicità</label>
+      </div>
+      <div class="choice" onclick="selectChoice('emotion', 'Curiosità')">
+        <img src="https://via.placeholder.com/150?text=Curiosità" alt="Curiosità">
+        <label>Curiosità</label>
+      </div>
+      <div class="choice" onclick="selectChoice('emotion', 'Tranquillità')">
+        <img src="https://via.placeholder.com/150?text=Tranquillità" alt="Tranquillità">
+        <label>Tranquillità</label>
+      </div>
+      <div class="choice" onclick="selectChoice('emotion', 'Energia')">
+        <img src="https://via.placeholder.com/150?text=Energia" alt="Energia">
+        <label>Energia</label>
+      </div>
+    </div>
+
+    <p id="selectedEmotion" style="margin-top: 20px; font-weight: bold;">Emozione selezionata: Nessuna</p>
+
+    <div class="choices-container" id="outfitChoices">
+      <div class="choice" onclick="selectChoice('outfit', 'Casual')">
+        <img src="https://via.placeholder.com/150?text=Casual" alt="Casual">
+        <label>Casual</label>
+      </div>
+      <div class="choice" onclick="selectChoice('outfit', 'Elegante')">
+        <img src="https://via.placeholder.com/150?text=Elegante" alt="Elegante">
+        <label>Elegante</label>
+      </div>
+      <div class="choice" onclick="selectChoice('outfit', 'Sportivo')">
+        <img src="https://via.placeholder.com/150?text=Sportivo" alt="Sportivo">
+        <label>Sportivo</label>
+      </div>
+      <div class="choice" onclick="selectChoice('outfit', 'Creativo')">
+        <img src="https://via.placeholder.com/150?text=Creativo" alt="Creativo">
+        <label>Creativo</label>
+      </div>
+    </div>
+
+    <p id="selectedOutfit" style="margin-top: 20px; font-weight: bold;">Vestito selezionato: Nessuno</p>
+
+    <button onclick="showSummary()">Conferma</button>
+
+    <div id="summary" style="margin-top: 20px; display: none;">
+      <h2>Riepilogo del tuo viaggio</h2>
+      <p id="emotionSummary">Emozione: Nessuna</p>
+      <p id="outfitSummary">Vestito: Nessuno</p>
+    </div>
+
+    <script>
+      const selections = { emotion: null, outfit: null };
+
+      function selectChoice(type, value) {
+        selections[type] = value;
+        document.getElementById(`selected${type.charAt(0).toUpperCase() + type.slice(1)}`).textContent = 
+          `${type.charAt(0).toUpperCase() + type.slice(1)} selezionata: ${value}`;
+      }
+
+      function showSummary() {
+        if (!selections.emotion || !selections.outfit) {
+          alert("Per favore, seleziona sia un'emozione che un vestito prima di confermare.");
+          return;
+        }
+
+        document.getElementById("emotionSummary").textContent = `Emozione: ${selections.emotion}`;
+        document.getElementById("outfitSummary").textContent = `Vestito: ${selections.outfit}`;
+        document.getElementById("summary").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
