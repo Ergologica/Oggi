@@ -51,6 +51,19 @@
         display: block;
         font-weight: bold;
       }
+      button {
+        margin: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
     </style>
   </head>
   <body>
@@ -120,7 +133,7 @@
         <label>Consapevolezza</label>
       </div>
     </div>
-    <button style="margin: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;" onclick="location.href='nextpage.html'">Avanti</button>
+    <button onclick="saveResponsesAndProceed()">Avanti</button>
     <script>
       const selectedEmotions = new Set();
 
@@ -132,20 +145,30 @@
         }
         console.log("Emozioni selezionate:", Array.from(selectedEmotions));
       }
-          function saveResponses() {
-  const responses = Array.from(selectedEmotions);
-  fetch('https://tuo-progetto.onrender.com/save', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ responses }),
-  })
-    .then((response) => response.text())
-    .then((data) => console.log(data))
-    .catch((error) => console.error('Errore:', error));
-}
 
-
-      document.querySelector('button').addEventListener('click', saveResponses);
+      function saveResponsesAndProceed() {
+        const responses = Array.from(selectedEmotions);
+        fetch('https://tuo-progetto.onrender.com/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ responses }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Errore HTTP! Status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then((data) => {
+            console.log(data);
+            // Naviga alla prossima pagina solo se il salvataggio è riuscito
+            location.href = 'nextpage.html';
+          })
+          .catch((error) => {
+            console.error('Errore:', error);
+            alert('Errore durante il salvataggio. Riprova.');
+          });
+      }
     </script>
   </body>
 </html>
