@@ -51,56 +51,12 @@
         display: block;
         font-weight: bold;
       }
-      .avatar-container {
-        text-align: center;
-        margin: 20px;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-      }
-      .avatar-preview {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .avatar-preview img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-      }
-      .avatar-options {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 20px;
-      }
-      button {
-        margin-top: 20px;
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-      }
-      button:hover {
-        background-color: #45a049;
-      }
-      .avatar-section {
-        margin-top: 20px;
-      }
     </style>
   </head>
   <body>
     <header>Oggi è tuo: scegli come sentirti!</header>
 
-    <p>Seleziona le emozioni che vuoi vivere oggi:</p>
+    <p>Seleziona l'immagine che ti rappresenta di più adesso:</p>
 
     <div class="grid-container">
       <div class="grid-item" onclick="toggleChoice('Felicità')">
@@ -123,45 +79,50 @@
         <img src="https://i.ibb.co/Zd1Fnzn/Gratitudine.jpg" alt="Gratitudine">
         <label>Gratitudine</label>
       </div>
-    </div>
-
-    <div class="avatar-container">
-      <h2>Personalizza il tuo personaggio</h2>
-      <div class="avatar-preview">
-        <img id="avatarImage" src="https://via.placeholder.com/150" alt="Avatar">
-        <label id="avatarLabel">Aspetto attuale</label>
+      <div class="grid-item" onclick="toggleChoice('Coraggio')">
+        <img src="https://i.ibb.co/D77zzHz/Coraggio.jpg" alt="Coraggio">
+        <label>Coraggio</label>
       </div>
-      <div class="avatar-section">
-        <h3>Seleziona la testa</h3>
-        <div class="avatar-options">
-          <button onclick="changeAvatar('Capelli Biondi', 'https://via.placeholder.com/150/FFD700')">Capelli Biondi</button>
-          <button onclick="changeAvatar('Capelli Castani', 'https://via.placeholder.com/150/8B4513')">Capelli Castani</button>
-          <button onclick="changeAvatar('Cappello', 'https://via.placeholder.com/150/FF6347')">Cappello</button>
-        </div>
+      <div class="grid-item" onclick="toggleChoice('Empatia')">
+        <img src="https://i.ibb.co/nRs0nk7/Empatia.jpg" alt="Empatia">
+        <label>Empatia</label>
       </div>
-      <div class="avatar-section">
-        <h3>Seleziona il corpo</h3>
-        <div class="avatar-options">
-          <button onclick="changeAvatar('Maglietta Rossa', 'https://via.placeholder.com/150/FF4500')">Maglietta Rossa</button>
-          <button onclick="changeAvatar('Maglietta Blu', 'https://via.placeholder.com/150/4682B4')">Maglietta Blu</button>
-          <button onclick="changeAvatar('Vestito Verde', 'https://via.placeholder.com/150/3CB371')">Vestito Verde</button>
-        </div>
+      <div class="grid-item" onclick="toggleChoice('Determinazione')">
+        <img src="https://i.ibb.co/4sQZ3wg/Determinazione.jpg" alt="Determinazione">
+        <label>Determinazione</label>
       </div>
-      <div class="avatar-section">
-        <h3>Aggiungi un accessorio</h3>
-        <div class="avatar-options">
-          <button onclick="changeAvatar('Occhiali', 'https://via.placeholder.com/150/808080')">Occhiali</button>
-          <button onclick="changeAvatar('Collana', 'https://via.placeholder.com/150/FFD700')">Collana</button>
-          <button onclick="changeAvatar('Cappello da Sole', 'https://via.placeholder.com/150/F4A460')">Cappello da Sole</button>
-        </div>
+      <div class="grid-item" onclick="toggleChoice('Creatività')">
+        <img src="https://i.ibb.co/WfHXBJm/Creativita.jpg" alt="Creatività">
+        <label>Creatività</label>
       </div>
-      <button onclick="confirmAvatar()">Conferma Personaggio</button>
+      <div class="grid-item" onclick="toggleChoice('Ottimismo')">
+        <img src="https://i.ibb.co/3Rbrp67/Ottimismo.jpg" alt="Ottimismo">
+        <label>Ottimismo</label>
+      </div>
+      <div class="grid-item" onclick="toggleChoice('Resilienza')">
+        <img src="https://i.ibb.co/LPXSkLY/Resilienza.jpg" alt="Resilienza">
+        <label>Resilienza</label>
+      </div>
+      <div class="grid-item" onclick="toggleChoice('Equilibrio')">
+        <img src="https://i.ibb.co/bBSXCLS/Equilibrio.jpg" alt="Equilibrio">
+        <label>Equilibrio</label>
+      </div>
+      <div class="grid-item" onclick="toggleChoice('Entusiasmo')">
+        <img src="https://i.ibb.co/KzcR5rs/Entusiasmo.jpg" alt="Entusiasmo">
+        <label>Entusiasmo</label>
+      </div>
+      <div class="grid-item" onclick="toggleChoice('Gentilezza')">
+        <img src="https://i.ibb.co/BP3z1n7/Gentilezza.jpg" alt="Gentilezza">
+        <label>Gentilezza</label>
+      </div>
+      <div class="grid-item" onclick="toggleChoice('Consapevolezza')">
+        <img src="https://i.ibb.co/ZB17jYX/Consapevolezza.jpg" alt="Consapevolezza">
+        <label>Consapevolezza</label>
+      </div>
     </div>
 
     <script>
-      const selectedEmotions = new Set(
-        JSON.parse(localStorage.getItem("selectedEmotions")) || []
-      );
+      const selectedEmotions = new Set();
 
       function toggleChoice(emotion) {
         if (selectedEmotions.has(emotion)) {
@@ -169,26 +130,8 @@
         } else {
           selectedEmotions.add(emotion);
         }
-        localStorage.setItem(
-          "selectedEmotions",
-          JSON.stringify(Array.from(selectedEmotions))
-        );
-        document.getElementById("selectedEmotions").textContent = 
-          Array.from(selectedEmotions).join(', ') || 'Nessuna';
+        console.log("Emozioni selezionate:", Array.from(selectedEmotions));
       }
-
-      function changeAvatar(description, imageUrl) {
-        document.getElementById('avatarImage').src = imageUrl;
-        document.getElementById('avatarLabel').textContent = description;
-      }
-
-      function confirmAvatar() {
-        const avatarDescription = document.getElementById('avatarLabel').textContent;
-        alert(`Personaggio confermato: ${avatarDescription}`);
-      }
-
-      document.getElementById("selectedEmotions").textContent = 
-        Array.from(selectedEmotions).join(', ') || 'Nessuna';
     </script>
   </body>
 </html>
