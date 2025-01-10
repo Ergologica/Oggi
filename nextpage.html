@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prossima Pagina</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .content {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .summary {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Il Viaggio Continua</header>
+
+    <div class="content">
+      <p class="summary" id="summary">Caricamento delle tue emozioni selezionate...</p>
+
+      <button onclick="goBack()">Indietro</button>
+    </div>
+
+    <script>
+      // Recupera le emozioni selezionate dal server o dal localStorage
+      function loadSelections() {
+        fetch('http://localhost:3000/load') // Usa un endpoint server se disponibile
+          .then((response) => response.json())
+          .then((data) => {
+            const summary = document.getElementById('summary');
+            summary.textContent = `Hai selezionato le seguenti emozioni: ${data.responses.join(', ')}`;
+          })
+          .catch((error) => {
+            console.error('Errore nel caricamento:', error);
+            const summary = document.getElementById('summary');
+            summary.textContent = 'Impossibile caricare le emozioni selezionate.';
+          });
+      }
+
+      function goBack() {
+        window.history.back();
+      }
+
+      // Chiama la funzione di caricamento all'avvio
+      loadSelections();
+    </script>
+  </body>
+</html>
