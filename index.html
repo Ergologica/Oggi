@@ -6,46 +6,67 @@
       body {
         font-family: Arial, sans-serif;
         text-align: center;
-        background-color: #f9f9f9;
+        background-color: #f4f4f9;
         color: #333;
+        margin: 0;
+        padding: 0;
       }
-      h1 {
-        color: #4CAF50;
+      header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
       }
-      .carousel-container {
-        display: flex;
-        overflow-x: auto;
-        scroll-behavior: smooth;
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
         padding: 20px;
-        margin: 20px 0;
-        gap: 10px;
+        max-width: 1200px;
+        margin: 20px auto;
       }
-      .carousel-item {
-        flex: 0 0 auto;
-        width: 150px;
-        padding: 10px;
-        background: #ffffff;
+      .grid-item {
+        background: white;
         border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         text-align: center;
         cursor: pointer;
-        transition: transform 0.2s;
+        padding: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
       }
-      .carousel-item:hover {
-        transform: scale(1.1);
+      .grid-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       }
-      .carousel-item img {
+      .grid-item img {
         width: 100%;
         height: auto;
         border-radius: 8px;
       }
-      .carousel-item label {
-        display: block;
+      .grid-item label {
         margin-top: 10px;
+        display: block;
         font-weight: bold;
       }
+      footer {
+        text-align: center;
+        padding: 10px;
+        background: #4CAF50;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      .summary {
+        margin: 20px auto;
+        font-size: 18px;
+        max-width: 800px;
+      }
       button {
+        margin-top: 20px;
         background-color: #4CAF50;
         color: white;
         padding: 10px 20px;
@@ -53,87 +74,87 @@
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
-        margin-top: 20px;
       }
       button:hover {
         background-color: #45a049;
       }
-      .summary {
-        margin-top: 20px;
-        font-weight: bold;
-      }
     </style>
   </head>
   <body>
-    <h1>Il Viaggio di Oggi</h1>
-    <p>Scegli come affrontare la tua giornata!</p>
+    <header>Il Viaggio di Oggi</header>
 
-    <div class="carousel-container" id="emotionCarousel">
-      <div class="carousel-item" onclick="toggleChoice('Felicità')">
+    <p>Seleziona le emozioni che vuoi vivere oggi:</p>
+
+    <div class="grid-container">
+      <div class="grid-item" onclick="toggleChoice('Felicità')">
         <img src="https://i.ibb.co/p1cpmfH/Felicita.jpg" alt="Felicità">
         <label>Felicità</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Curiosità')">
+      <div class="grid-item" onclick="toggleChoice('Curiosità')">
         <img src="https://i.ibb.co/yBs9yps/Curiosita.jpg" alt="Curiosità">
         <label>Curiosità</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Tranquillità')">
+      <div class="grid-item" onclick="toggleChoice('Tranquillità')">
         <img src="https://i.ibb.co/nBMgdFd/Tranquillita.jpg" alt="Tranquillità">
         <label>Tranquillità</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Energia')">
+      <div class="grid-item" onclick="toggleChoice('Energia')">
         <img src="https://i.ibb.co/J3QfMpQ/Energia.jpg" alt="Energia">
         <label>Energia</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Gratitudine')">
+      <div class="grid-item" onclick="toggleChoice('Gratitudine')">
         <img src="https://i.ibb.co/Zd1Fnzn/Gratitudine.jpg" alt="Gratitudine">
         <label>Gratitudine</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Coraggio')">
+      <div class="grid-item" onclick="toggleChoice('Coraggio')">
         <img src="https://i.ibb.co/D77zzHz/Coraggio.jpg" alt="Coraggio">
         <label>Coraggio</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Empatia')">
+      <div class="grid-item" onclick="toggleChoice('Empatia')">
         <img src="https://i.ibb.co/nRs0nk7/Empatia.jpg" alt="Empatia">
         <label>Empatia</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Determinazione')">
+      <div class="grid-item" onclick="toggleChoice('Determinazione')">
         <img src="https://i.ibb.co/4sQZ3wg/Determinazione.jpg" alt="Determinazione">
         <label>Determinazione</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Creatività')">
+      <div class="grid-item" onclick="toggleChoice('Creatività')">
         <img src="https://i.ibb.co/WfHXBJm/Creativita.jpg" alt="Creatività">
         <label>Creatività</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Ottimismo')">
+      <div class="grid-item" onclick="toggleChoice('Ottimismo')">
         <img src="https://i.ibb.co/3Rbrp67/Ottimismo.jpg" alt="Ottimismo">
         <label>Ottimismo</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Resilienza')">
+      <div class="grid-item" onclick="toggleChoice('Resilienza')">
         <img src="https://i.ibb.co/LPXSkLY/Resilienza.jpg" alt="Resilienza">
         <label>Resilienza</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Equilibrio')">
+      <div class="grid-item" onclick="toggleChoice('Equilibrio')">
         <img src="https://i.ibb.co/bBSXCLS/Equilibrio.jpg" alt="Equilibrio">
         <label>Equilibrio</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Entusiasmo')">
+      <div class="grid-item" onclick="toggleChoice('Entusiasmo')">
         <img src="https://i.ibb.co/KzcR5rs/Entusiasmo.jpg" alt="Entusiasmo">
         <label>Entusiasmo</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Gentilezza')">
+      <div class="grid-item" onclick="toggleChoice('Gentilezza')">
         <img src="https://i.ibb.co/BP3z1n7/Gentilezza.jpg" alt="Gentilezza">
         <label>Gentilezza</label>
       </div>
-      <div class="carousel-item" onclick="toggleChoice('Consapevolezza')">
+      <div class="grid-item" onclick="toggleChoice('Consapevolezza')">
         <img src="https://i.ibb.co/ZB17jYX/Consapevolezza.jpg" alt="Consapevolezza">
         <label>Consapevolezza</label>
       </div>
     </div>
-    
-    <p class="summary">Emozioni selezionate: <span id="selectedEmotions">Nessuna</span></p>
+
+    <div class="summary">
+      Emozioni selezionate: <span id="selectedEmotions">Nessuna</span>
+    </div>
 
     <button onclick="showSummary()">Conferma</button>
+
+    <footer>&copy; 2025 Il Viaggio di Oggi</footer>
 
     <script>
       const selectedEmotions = new Set();
