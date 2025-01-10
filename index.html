@@ -75,6 +75,7 @@
       .avatar-options {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 20px;
         margin-top: 20px;
       }
@@ -90,6 +91,9 @@
       }
       button:hover {
         background-color: #45a049;
+      }
+      .avatar-section {
+        margin-top: 20px;
       }
     </style>
   </head>
@@ -127,10 +131,29 @@
         <img id="avatarImage" src="https://via.placeholder.com/150" alt="Avatar">
         <label id="avatarLabel">Aspetto attuale</label>
       </div>
-      <div class="avatar-options">
-        <button onclick="changeAvatar('Capelli Biondi', 'https://via.placeholder.com/150/FFD700')">Capelli Biondi</button>
-        <button onclick="changeAvatar('Capelli Castani', 'https://via.placeholder.com/150/8B4513')">Capelli Castani</button>
-        <button onclick="changeAvatar('Cappello', 'https://via.placeholder.com/150/FF6347')">Cappello</button>
+      <div class="avatar-section">
+        <h3>Seleziona la testa</h3>
+        <div class="avatar-options">
+          <button onclick="changeAvatar('Capelli Biondi', 'https://via.placeholder.com/150/FFD700')">Capelli Biondi</button>
+          <button onclick="changeAvatar('Capelli Castani', 'https://via.placeholder.com/150/8B4513')">Capelli Castani</button>
+          <button onclick="changeAvatar('Cappello', 'https://via.placeholder.com/150/FF6347')">Cappello</button>
+        </div>
+      </div>
+      <div class="avatar-section">
+        <h3>Seleziona il corpo</h3>
+        <div class="avatar-options">
+          <button onclick="changeAvatar('Maglietta Rossa', 'https://via.placeholder.com/150/FF4500')">Maglietta Rossa</button>
+          <button onclick="changeAvatar('Maglietta Blu', 'https://via.placeholder.com/150/4682B4')">Maglietta Blu</button>
+          <button onclick="changeAvatar('Vestito Verde', 'https://via.placeholder.com/150/3CB371')">Vestito Verde</button>
+        </div>
+      </div>
+      <div class="avatar-section">
+        <h3>Aggiungi un accessorio</h3>
+        <div class="avatar-options">
+          <button onclick="changeAvatar('Occhiali', 'https://via.placeholder.com/150/808080')">Occhiali</button>
+          <button onclick="changeAvatar('Collana', 'https://via.placeholder.com/150/FFD700')">Collana</button>
+          <button onclick="changeAvatar('Cappello da Sole', 'https://via.placeholder.com/150/F4A460')">Cappello da Sole</button>
+        </div>
       </div>
       <button onclick="confirmAvatar()">Conferma Personaggio</button>
     </div>
