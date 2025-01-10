@@ -35,7 +35,7 @@
         text-align: center;
         cursor: pointer;
         padding: 10px;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: all 0.2s;
       }
       .grid-item:hover {
         transform: translateY(-5px);
@@ -78,10 +78,47 @@
       button:hover {
         background-color: #45a049;
       }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
-    <header>Il Viaggio di Oggi</header>
+    <header>Oggi è tuo: scegli come sentirti!</header>
 
     <p>Seleziona le emozioni che vuoi vivere oggi:</p>
 
@@ -154,10 +191,19 @@
 
     <button onclick="showSummary()">Conferma</button>
 
+    <div id="summaryModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalText"></p>
+      </div>
+    </div>
+
     <footer>&copy; 2025 Il Viaggio di Oggi</footer>
 
     <script>
-      const selectedEmotions = new Set();
+      const selectedEmotions = new Set(
+        JSON.parse(localStorage.getItem("selectedEmotions")) || []
+      );
 
       function toggleChoice(emotion) {
         if (selectedEmotions.has(emotion)) {
@@ -165,6 +211,10 @@
         } else {
           selectedEmotions.add(emotion);
         }
+        localStorage.setItem(
+          "selectedEmotions",
+          JSON.stringify(Array.from(selectedEmotions))
+        );
         document.getElementById("selectedEmotions").textContent = 
           Array.from(selectedEmotions).join(', ') || 'Nessuna';
       }
@@ -174,8 +224,17 @@
           alert("Per favore, seleziona almeno un'emozione prima di confermare.");
           return;
         }
-        alert(`Hai selezionato: ${Array.from(selectedEmotions).join(', ')}`);
+        const modal = document.getElementById("summaryModal");
+        document.getElementById("modalText").textContent = `Hai selezionato: ${Array.from(selectedEmotions).join(', ')}`;
+        modal.style.display = "block";
       }
+
+      function closeModal() {
+        document.getElementById("summaryModal").style.display = "none";
+      }
+
+      document.getElementById("selectedEmotions").textContent = 
+        Array.from(selectedEmotions).join(', ') || 'Nessuna';
     </script>
   </body>
 </html>
