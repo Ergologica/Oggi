@@ -51,19 +51,32 @@
         display: block;
         font-weight: bold;
       }
-      footer {
+      .avatar-container {
         text-align: center;
-        padding: 10px;
-        background: #4CAF50;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
       }
-      .summary {
-        margin: 20px auto;
-        font-size: 18px;
-        max-width: 800px;
+      .avatar-preview {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .avatar-preview img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      .avatar-options {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
       }
       button {
         margin-top: 20px;
@@ -77,43 +90,6 @@
       }
       button:hover {
         background-color: #45a049;
-      }
-
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-      }
-
-      .modal-content {
-        background-color: #fff;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 500px;
-        border-radius: 8px;
-        text-align: center;
-      }
-
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
       }
     </style>
   </head>
@@ -143,62 +119,21 @@
         <img src="https://i.ibb.co/Zd1Fnzn/Gratitudine.jpg" alt="Gratitudine">
         <label>Gratitudine</label>
       </div>
-      <div class="grid-item" onclick="toggleChoice('Coraggio')">
-        <img src="https://i.ibb.co/D77zzHz/Coraggio.jpg" alt="Coraggio">
-        <label>Coraggio</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Empatia')">
-        <img src="https://i.ibb.co/nRs0nk7/Empatia.jpg" alt="Empatia">
-        <label>Empatia</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Determinazione')">
-        <img src="https://i.ibb.co/4sQZ3wg/Determinazione.jpg" alt="Determinazione">
-        <label>Determinazione</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Creatività')">
-        <img src="https://i.ibb.co/WfHXBJm/Creativita.jpg" alt="Creatività">
-        <label>Creatività</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Ottimismo')">
-        <img src="https://i.ibb.co/3Rbrp67/Ottimismo.jpg" alt="Ottimismo">
-        <label>Ottimismo</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Resilienza')">
-        <img src="https://i.ibb.co/LPXSkLY/Resilienza.jpg" alt="Resilienza">
-        <label>Resilienza</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Equilibrio')">
-        <img src="https://i.ibb.co/bBSXCLS/Equilibrio.jpg" alt="Equilibrio">
-        <label>Equilibrio</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Entusiasmo')">
-        <img src="https://i.ibb.co/KzcR5rs/Entusiasmo.jpg" alt="Entusiasmo">
-        <label>Entusiasmo</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Gentilezza')">
-        <img src="https://i.ibb.co/BP3z1n7/Gentilezza.jpg" alt="Gentilezza">
-        <label>Gentilezza</label>
-      </div>
-      <div class="grid-item" onclick="toggleChoice('Consapevolezza')">
-        <img src="https://i.ibb.co/ZB17jYX/Consapevolezza.jpg" alt="Consapevolezza">
-        <label>Consapevolezza</label>
-      </div>
     </div>
 
-    <div class="summary">
-      Emozioni selezionate: <span id="selectedEmotions">Nessuna</span>
-    </div>
-
-    <button onclick="showSummary()">Conferma</button>
-
-    <div id="summaryModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p id="modalText"></p>
+    <div class="avatar-container">
+      <h2>Personalizza il tuo personaggio</h2>
+      <div class="avatar-preview">
+        <img id="avatarImage" src="https://via.placeholder.com/150" alt="Avatar">
+        <label id="avatarLabel">Aspetto attuale</label>
       </div>
+      <div class="avatar-options">
+        <button onclick="changeAvatar('Capelli Biondi', 'https://via.placeholder.com/150/FFD700')">Capelli Biondi</button>
+        <button onclick="changeAvatar('Capelli Castani', 'https://via.placeholder.com/150/8B4513')">Capelli Castani</button>
+        <button onclick="changeAvatar('Cappello', 'https://via.placeholder.com/150/FF6347')">Cappello</button>
+      </div>
+      <button onclick="confirmAvatar()">Conferma Personaggio</button>
     </div>
-
-    <footer>&copy; 2025 Il Viaggio di Oggi</footer>
 
     <script>
       const selectedEmotions = new Set(
@@ -219,18 +154,14 @@
           Array.from(selectedEmotions).join(', ') || 'Nessuna';
       }
 
-      function showSummary() {
-        if (selectedEmotions.size === 0) {
-          alert("Per favore, seleziona almeno un'emozione prima di confermare.");
-          return;
-        }
-        const modal = document.getElementById("summaryModal");
-        document.getElementById("modalText").textContent = `Hai selezionato: ${Array.from(selectedEmotions).join(', ')}`;
-        modal.style.display = "block";
+      function changeAvatar(description, imageUrl) {
+        document.getElementById('avatarImage').src = imageUrl;
+        document.getElementById('avatarLabel').textContent = description;
       }
 
-      function closeModal() {
-        document.getElementById("summaryModal").style.display = "none";
+      function confirmAvatar() {
+        const avatarDescription = document.getElementById('avatarLabel').textContent;
+        alert(`Personaggio confermato: ${avatarDescription}`);
       }
 
       document.getElementById("selectedEmotions").textContent = 
