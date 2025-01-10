@@ -111,7 +111,7 @@
         <img src="https://i.ibb.co/KzcR5rs/Entusiasmo.jpg" alt="Entusiasmo">
         <label>Entusiasmo</label>
       </div>
-      <div class="grid-item" onclick="toggleChoice('Gentilezza')">s
+      <div class="grid-item" onclick="toggleChoice('Gentilezza')">
         <img src="https://i.ibb.co/BP3z1n7/Gentilezza.jpg" alt="Gentilezza">
         <label>Gentilezza</label>
       </div>
@@ -132,6 +132,19 @@
         }
         console.log("Emozioni selezionate:", Array.from(selectedEmotions));
       }
+          function saveResponses() {
+        const responses = Array.from(selectedEmotions);
+        fetch('http://localhost:3000/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ responses }),
+        })
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error('Errore:', error));
+      }
+
+      document.querySelector('button').addEventListener('click', saveResponses);
     </script>
   </body>
 </html>
