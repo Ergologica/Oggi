@@ -52,14 +52,20 @@
     <div class="content">
       <p class="summary" id="summary">Caricamento delle tue emozioni selezionate...</p>
 
-      <button onclick="goBack()">Indietro</button>
+      <button onclick="goBackSafely()">Indietro</button>
     </div>
 
     <script>
       // Recupera le emozioni selezionate dal server o dal localStorage
       function loadSelections() {
-        fetch('http://localhost:3000/load') // Usa un endpoint server se disponibile
-          .then((response) => response.json())
+        const endpoint = 'http://localhost:3000/load';
+        fetch(endpoint) // Usa un endpoint server se disponibile
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Errore HTTP! Status: ${response.status}`);
+            }
+            return response.json();
+          })
           .then((data) => {
             const summary = document.getElementById('summary');
             summary.textContent = `Hai selezionato le seguenti emozioni: ${data.responses.join(', ')}`;
@@ -67,12 +73,17 @@
           .catch((error) => {
             console.error('Errore nel caricamento:', error);
             const summary = document.getElementById('summary');
-            summary.textContent = 'Impossibile caricare le emozioni selezionate.';
+            summary.textContent = 'Impossibile caricare le emozioni selezionate. Verifica che il server sia attivo e accessibile.';
           });
       }
 
-      function goBack() {
-        window.history.back();
+      function goBackSafely() {
+        if (document.referrer) {
+          window.location.href = document.referrer;
+        } else {
+          console.warn('Nessuna pagina precedente trovata.');
+          alert('Non ci sono pagine precedenti da visitare.');
+        }
       }
 
       // Chiama la funzione di caricamento all'avvio
