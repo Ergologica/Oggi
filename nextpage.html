@@ -58,24 +58,18 @@
     <script>
       // Recupera le emozioni selezionate dal server o dal localStorage
       function loadSelections() {
-        const endpoint = 'http://localhost:3000/load';
-        fetch(endpoint) // Usa un endpoint server se disponibile
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`Errore HTTP! Status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then((data) => {
-            const summary = document.getElementById('summary');
-            summary.textContent = `Hai selezionato le seguenti emozioni: ${data.responses.join(', ')}`;
-          })
-          .catch((error) => {
-            console.error('Errore nel caricamento:', error);
-            const summary = document.getElementById('summary');
-            summary.textContent = 'Impossibile caricare le emozioni selezionate. Verifica che il server sia attivo e accessibile.';
-          });
-      }
+  fetch('https://tuo-progetto.onrender.com/load')
+    .then((response) => response.json())
+    .then((data) => {
+      const summary = document.getElementById('summary');
+      summary.textContent = `Hai selezionato le seguenti emozioni: ${data.responses.join(', ')}`;
+    })
+    .catch((error) => {
+      console.error('Errore nel caricamento:', error);
+      const summary = document.getElementById('summary');
+      summary.textContent = 'Impossibile caricare le emozioni selezionate.';
+    });
+}
 
       function goBackSafely() {
         if (document.referrer) {
