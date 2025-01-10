@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <title>Il Viaggio di Oggi</title>
@@ -12,14 +13,17 @@
       h1 {
         color: #4CAF50;
       }
-      .choices-container {
+      .carousel-container {
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px;
+        margin: 20px 0;
+        gap: 10px;
       }
-      .choice {
-        margin: 10px;
+      .carousel-item {
+        flex: 0 0 auto;
+        width: 150px;
         padding: 10px;
         background: #ffffff;
         border: 1px solid #ddd;
@@ -29,15 +33,15 @@
         cursor: pointer;
         transition: transform 0.2s;
       }
-      .choice:hover {
+      .carousel-item:hover {
         transform: scale(1.1);
       }
-      .choice img {
-        width: 150px;
-        height: 150px;
+      .carousel-item img {
+        width: 100%;
+        height: auto;
         border-radius: 8px;
       }
-      .choice label {
+      .carousel-item label {
         display: block;
         margin-top: 10px;
         font-weight: bold;
@@ -55,80 +59,102 @@
       button:hover {
         background-color: #45a049;
       }
+      .summary {
+        margin-top: 20px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <h1>Il Viaggio di Oggi</h1>
     <p>Scegli come affrontare la tua giornata!</p>
 
-    <div class="choices-container" id="emotionChoices">
-      <div class="choice" onclick="selectChoice('emotion', 'Felicità')">
+    <div class="carousel-container" id="emotionCarousel">
+      <div class="carousel-item" onclick="toggleChoice('Felicità')">
         <img src="https://via.placeholder.com/150?text=Felicità" alt="Felicità">
         <label>Felicità</label>
       </div>
-      <div class="choice" onclick="selectChoice('emotion', 'Curiosità')">
+      <div class="carousel-item" onclick="toggleChoice('Curiosità')">
         <img src="https://via.placeholder.com/150?text=Curiosità" alt="Curiosità">
         <label>Curiosità</label>
       </div>
-      <div class="choice" onclick="selectChoice('emotion', 'Tranquillità')">
+      <div class="carousel-item" onclick="toggleChoice('Tranquillità')">
         <img src="https://via.placeholder.com/150?text=Tranquillità" alt="Tranquillità">
         <label>Tranquillità</label>
       </div>
-      <div class="choice" onclick="selectChoice('emotion', 'Energia')">
+      <div class="carousel-item" onclick="toggleChoice('Energia')">
         <img src="https://via.placeholder.com/150?text=Energia" alt="Energia">
         <label>Energia</label>
       </div>
+      <div class="carousel-item" onclick="toggleChoice('Gratitudine')">
+        <img src="https://via.placeholder.com/150?text=Gratitudine" alt="Gratitudine">
+        <label>Gratitudine</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Coraggio')">
+        <img src="https://via.placeholder.com/150?text=Coraggio" alt="Coraggio">
+        <label>Coraggio</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Empatia')">
+        <img src="https://via.placeholder.com/150?text=Empatia" alt="Empatia">
+        <label>Empatia</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Determinazione')">
+        <img src="https://via.placeholder.com/150?text=Determinazione" alt="Determinazione">
+        <label>Determinazione</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Creatività')">
+        <img src="https://via.placeholder.com/150?text=Creatività" alt="Creatività">
+        <label>Creatività</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Ottimismo')">
+        <img src="https://via.placeholder.com/150?text=Ottimismo" alt="Ottimismo">
+        <label>Ottimismo</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Resilienza')">
+        <img src="https://via.placeholder.com/150?text=Resilienza" alt="Resilienza">
+        <label>Resilienza</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Equilibrio')">
+        <img src="https://via.placeholder.com/150?text=Equilibrio" alt="Equilibrio">
+        <label>Equilibrio</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Entusiasmo')">
+        <img src="https://via.placeholder.com/150?text=Entusiasmo" alt="Entusiasmo">
+        <label>Entusiasmo</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Gentilezza')">
+        <img src="https://via.placeholder.com/150?text=Gentilezza" alt="Gentilezza">
+        <label>Gentilezza</label>
+      </div>
+      <div class="carousel-item" onclick="toggleChoice('Consapevolezza')">
+        <img src="https://via.placeholder.com/150?text=Consapevolezza" alt="Consapevolezza">
+        <label>Consapevolezza</label>
+      </div>
     </div>
 
-    <p id="selectedEmotion" style="margin-top: 20px; font-weight: bold;">Emozione selezionata: Nessuna</p>
-
-    <div class="choices-container" id="outfitChoices">
-      <div class="choice" onclick="selectChoice('outfit', 'Casual')">
-        <img src="https://via.placeholder.com/150?text=Casual" alt="Casual">
-        <label>Casual</label>
-      </div>
-      <div class="choice" onclick="selectChoice('outfit', 'Elegante')">
-        <img src="https://via.placeholder.com/150?text=Elegante" alt="Elegante">
-        <label>Elegante</label>
-      </div>
-      <div class="choice" onclick="selectChoice('outfit', 'Sportivo')">
-        <img src="https://via.placeholder.com/150?text=Sportivo" alt="Sportivo">
-        <label>Sportivo</label>
-      </div>
-      <div class="choice" onclick="selectChoice('outfit', 'Creativo')">
-        <img src="https://via.placeholder.com/150?text=Creativo" alt="Creativo">
-        <label>Creativo</label>
-      </div>
-    </div>
-
-    <p id="selectedOutfit" style="margin-top: 20px; font-weight: bold;">Vestito selezionato: Nessuno</p>
+    <p class="summary">Emozioni selezionate: <span id="selectedEmotions">Nessuna</span></p>
 
     <button onclick="showSummary()">Conferma</button>
 
-    <div id="summary" style="margin-top: 20px; display: none;">
-      <h2>Riepilogo del tuo viaggio</h2>
-      <p id="emotionSummary">Emozione: Nessuna</p>
-      <p id="outfitSummary">Vestito: Nessuno</p>
-    </div>
-
     <script>
-      const selections = { emotion: null, outfit: null };
+      const selectedEmotions = new Set();
 
-      function selectChoice(type, value) {
-        selections[type] = value;
-        document.getElementById(`selected${type.charAt(0).toUpperCase() + type.slice(1)}`).textContent = 
-          `${type.charAt(0).toUpperCase() + type.slice(1)} selezionata: ${value}`;
+      function toggleChoice(emotion) {
+        if (selectedEmotions.has(emotion)) {
+          selectedEmotions.delete(emotion);
+        } else {
+          selectedEmotions.add(emotion);
+        }
+        document.getElementById("selectedEmotions").textContent = 
+          Array.from(selectedEmotions).join(', ') || 'Nessuna';
       }
 
       function showSummary() {
-        if (!selections.emotion || !selections.outfit) {
-          alert("Per favore, seleziona sia un'emozione che un vestito prima di confermare.");
+        if (selectedEmotions.size === 0) {
+          alert("Per favore, seleziona almeno un'emozione prima di confermare.");
           return;
         }
-
-        document.getElementById("emotionSummary").textContent = `Emozione: ${selections.emotion}`;
-        document.getElementById("outfitSummary").textContent = `Vestito: ${selections.outfit}`;
-        document.getElementById("summary").style.display = "block";
+        alert(`Hai selezionato: ${Array.from(selectedEmotions).join(', ')}`);
       }
     </script>
   </body>
